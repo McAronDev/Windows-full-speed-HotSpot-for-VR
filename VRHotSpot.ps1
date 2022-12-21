@@ -1,8 +1,5 @@
 $wifiInterfaceName="WiFi" # run "netsh wlan show interfaces" to get list of your interfaces
 $wifiProfile="McAronNet_5G" # usually the same as your network SSID. To get list of profiles run "netsh wlan show profiles"
-
-
-
 $virtualDesktopProcessName="VirtualDesktop.Streamer"
 $ErrorActionPreference = "Stop"
 
@@ -59,14 +56,17 @@ while($tetheringManager.TetheringOperationalState -ne 'On' )
     Start-Sleep -Seconds 1	
 }
 
-$virtualDesktopPath=Get-Process -Name "$virtualDesktopProcessName" | Select -ExpandProperty Path
-if ("$virtualDesktopPath")
-{
+try {
+	$virtualDesktopPath=Get-Process -Name "$virtualDesktopProcessName" | Select -ExpandProperty Path 
 	echo "stopping VirtualDesktop"
 	Stop-Process -Name "$virtualDesktopProcessName" -Force
 	echo "starting VirtualDesktop"
 	Start-Process -FilePath "$virtualDesktopPath"
+} 
+catch {
+	echo "VirtualDesktop is not running"
 }
+
 echo "disabling autoconfig on wifi interface"
 netsh wlan set autoconfig enabled=no interface="$wifiInterfaceName"
 
