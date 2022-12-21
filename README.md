@@ -1,6 +1,6 @@
 Powershell script for setting your wifi interface as full speed HotSpot.
 
-This script connects your PC to any available 5Ghz network to force run WiFi interface on full speed.
+This script connects your PC to any available 5Ghz network as client to force run WiFi interface on full speed. Then it disconnects from that network and setting up HotSpot.
 
 What you need to do:
 
