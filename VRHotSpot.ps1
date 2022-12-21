@@ -1,5 +1,8 @@
 $wifiInterfaceName="WiFi" # run "netsh wlan show interfaces" to get list of your interfaces
 $wifiProfile="McAronNet_5G" # usually the same as your network SSID. To get list of profiles run "netsh wlan show profiles"
+
+
+
 $virtualDesktopProcessName="VirtualDesktop.Streamer"
 $ErrorActionPreference = "Stop"
 
